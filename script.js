@@ -3,7 +3,6 @@ const timeDiv = document.getElementById('time')
 
 getTime = () => {
  let now = new Date()
- let year = now.getFullYear()
  let month = now.toLocaleDateString('default', {month: 'short'})
  let date = now.getDate()
  let hour = now.getHours()
@@ -12,13 +11,12 @@ getTime = () => {
 
  let am_pm = "AM";
     
- if(hour === 0){
-     hour = 12;
+ if(hour === 12){
+     am_pm = "PM"
  }
- 
- if(hour > 12){
+ if(hour > 12 && minute > 0){
      hour = hour - 12;
-     session = "PM";
+     am_pm = "PM";
  }
 
  date = date < 10 ? `0${date}`: date
@@ -26,7 +24,7 @@ getTime = () => {
  minute = minute < 10 ? `0${minute}`: minute
  second = second < 10 ? `0${second}`: second
 
- dateDiv.textContent = `${month} ${date}ᵀᴴ ${year}`
+ dateDiv.textContent = `${month} ${date}ᵀᴴ`
  timeDiv.textContent = `${hour}:${minute}:${second}  ${am_pm}`
 }
 getTime()
